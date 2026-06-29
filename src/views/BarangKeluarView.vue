@@ -301,10 +301,10 @@ onMounted(() => {
             <table class="table-data">
               <thead>
                 <tr>
-                  <th>No</th>
-                  <th>Barang</th>
-                  <th class="text-center">Jumlah</th>
-                  <th>Tanggal</th>
+                  <th style="width: 25%;">No</th>
+                  <th style="width: 25%;">Barang</th>
+                  <th class="text-center" style="width: 25%;">Jumlah</th>
+                  <th style="width: 25%;">Tanggal</th>
                 </tr>
               </thead>
               <tbody>
@@ -679,7 +679,7 @@ onMounted(() => {
   color: #b91c1c;
 }
 
-.text-center { text-align: center; }
+.text-center { text-align: center !important; }
 .empty-state {
   padding: 30px 12px;
   text-align: center;

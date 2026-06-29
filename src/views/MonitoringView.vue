@@ -343,12 +343,12 @@ onMounted(() => {
             <table class="table-data">
               <thead>
                 <tr>
-                  <th>No</th>
-                  <th>Nama Barang</th>
-                  <th>Kategori</th>
-                  <th class="text-right">Harga</th>
-                  <th class="text-center">Stok</th>
-                  <th class="text-center">Status</th>
+                  <th style="width: 16.66%;">No</th>
+                  <th style="width: 16.66%;">Nama Barang</th>
+                  <th style="width: 16.66%;">Kategori</th>
+                  <th style="width: 16.66%;">Harga</th>
+                  <th style="width: 16.66%;">Stok</th>
+                  <th style="width: 16.66%; padding-left: 22px;">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -362,15 +362,15 @@ onMounted(() => {
                   <td>{{ (currentPage - 1) * pageSize + index + 1 }}</td>
                   <td class="cell-name">{{ item.nama_barang }}</td>
                   <td>{{ item.kategori }}</td>
-                  <td class="text-right cell-price">Rp {{ Number(item.harga).toLocaleString('id-ID') }}</td>
-                  <td class="text-center">
+                  <td class="cell-price">Rp {{ Number(item.harga).toLocaleString('id-ID') }}</td>
+                  <td>
                     <span class="stock-value" :class="{
                       'stock-low': item.stok < 5,
                       'stock-medium': item.stok >= 5 && item.stok <= 20,
                       'stock-safe': item.stok > 20
                     }">{{ item.stok }} unit</span>
                   </td>
-                  <td class="text-center">
+                  <td>
                     <span class="status-badge" :class="{
                       'badge-low': item.stok < 5,
                       'badge-medium': item.stok >= 5 && item.stok <= 20,
@@ -773,16 +773,16 @@ onMounted(() => {
 }
 
 .cell-price {
-  color: #16a34a;
-  font-weight: 600;
+  color: #334155;
+  font-weight: 500;
 }
 
 .text-right {
-  text-align: right;
+  text-align: right !important;
 }
 
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 /* Stock Value Colors */
