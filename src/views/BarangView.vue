@@ -357,11 +357,10 @@ onMounted(() => {
           <div class="topbar-heading">
             <div class="topbar-kicker">Katalog</div>
             <h1 class="topbar-title">Daftar barang</h1>
-            <div class="topbar-subtitle">{{ barang.length.toLocaleString('id-ID') }} barang terdaftar</div>
           </div>
         </div>
         <div class="topbar-actions">
-          <button class="primary-btn-top" @click="focusForm">
+          <button class="topbar-action" @click="focusForm">
             <i class="bi bi-plus-lg"></i> Tambah barang
           </button>
         </div>
@@ -502,16 +501,21 @@ onMounted(() => {
         </Transition>
 
         <!-- Table Panel Card -->
-        <div class="panel-card animate-in">
-          <div class="card-header-row">
-            <h2>Semua barang</h2>
-            <span class="active-filters-label" v-if="searchQuery || selectedCategory || selectedStockStatus || sortBy !== 'id' || minPrice !== '' || maxPrice !== ''">
-              Filter aktif: {{ (searchQuery ? 1 : 0) + (selectedCategory ? 1 : 0) + (selectedStockStatus ? 1 : 0) + (sortBy !== 'id' ? 1 : 0) + (minPrice !== '' ? 1 : 0) + (maxPrice !== '' ? 1 : 0) }}
-              <a href="#" @click.prevent="clearFilters" class="clear-filters-link"><i class="bi bi-x"></i></a>
-            </span>
-            <span class="active-filters-label text-muted" v-else>
-              Filter aktif: 0
-            </span>
+        <div class="card table-card animate-in">
+          <div class="table-header">
+            <div>
+              <div class="section-eyebrow">Katalog</div>
+              <h2>Daftar Barang ({{ filteredBarangCount }})</h2>
+            </div>
+            <div class="toolbar">
+              <span class="active-filters-label" v-if="searchQuery || selectedCategory || selectedStockStatus || sortBy !== 'id' || minPrice !== '' || maxPrice !== ''">
+                Filter aktif: {{ (searchQuery ? 1 : 0) + (selectedCategory ? 1 : 0) + (selectedStockStatus ? 1 : 0) + (sortBy !== 'id' ? 1 : 0) + (minPrice !== '' ? 1 : 0) + (maxPrice !== '' ? 1 : 0) }}
+                <a href="#" @click.prevent="clearFilters" class="clear-filters-link"><i class="bi bi-x"></i></a>
+              </span>
+              <span class="active-filters-label text-muted" v-else>
+                Filter aktif: 0
+              </span>
+            </div>
           </div>
 
           <div class="table-wrap">
@@ -578,10 +582,11 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: 16px 24px;
+  padding: 18px 20px;
   margin-bottom: 24px;
-  border-bottom: 1px solid #e4e4e7;
-  background: #ffffff;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f8fbff 0%, #eff6ff 100%);
+  border: 1px solid #dbeafe;
 }
 
 .topbar-title-wrap {
@@ -638,21 +643,22 @@ onMounted(() => {
   color: #09090b;
 }
 
-.primary-btn-top {
+.topbar-action {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background-color: #2563eb;
-  color: #ffffff;
-  border-radius: 10px;
+  gap: 8px;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: #2563eb;
+  color: #fff;
   font-size: 13px;
   font-weight: 700;
-  text-decoration: none;
-  border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.16);
+}
+
+.topbar-action:hover {
+  background: #1d4ed8;
 }
 
 .primary-btn-top:hover {
@@ -682,12 +688,12 @@ onMounted(() => {
   background: linear-gradient(135deg, #dc3545 0%, #a61e2e 100%);
 }
 
-.panel-card {
+.card {
   background: #fff;
-  border: 1px solid #e4e4e7;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
 }
 
 .section-eyebrow {
@@ -810,18 +816,20 @@ onMounted(() => {
   background-color: #fee2e2;
 }
 
-.card-header-row {
+.table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
 
-.card-header-row h2 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 700;
-  color: #09090b;
+.table-header h2 {
+  margin: 4px 0 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
 }
 
 .active-filters-label {
